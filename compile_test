@@ -1,0 +1,18 @@
+cd jenkins
+export MAVEN_OPTS='-Xmx2048m'
+
+# Build Test Cases:
+# General Case:
+# mvn clean -Plight-test -DfailIfNoTests=false install
+
+# Question 1:
+# mvn clean install -Dtest=hudson.model.UpdateCenter -DfailIfNoTests=false
+
+# Questions 2 and 3:
+# mvn clean install -Dtest=jenkins.model.Nodes -DfailIfNoTests=false 
+
+# Question 4:
+#mvn clean install -Dtest=jenkins.model.IdStrategy -DfailIfNoTests=false
+
+# Question 5:
+mvn clean install -Dtest=hudson.cli.Connection -DfailIfNoTests=false

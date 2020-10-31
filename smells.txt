@@ -1,0 +1,53 @@
+/------------------------------------------------------------------------\
+| Javid Fathi, CS-498-001, Fall 2020                                     |
+| MP3 - Refactoring: Code Smells Documentation                           |
+| Submitted October 30th, 2020                                           |
+|------------------------------------------------------------------------|
+| Note: compile_test can be used to run build tests from the cmd line.   |
+|       e.g.: bash compile_test                                          |
+|------------------------------------------------------------------------|
+| Question 1: What type of code smell is present in lines 558-568 of the |
+|             hudson.model.UpdateCenter class? How can it be resolved?   |
+|                                                                        |
+|     Answer: This section of code has a "switch statement" smell, and a |
+|             making its parent method unncessarily long and confusing.  |
+|             In the given code, the nested logic was necessary and      |
+|             could not be removed without changing the functionality of |
+|             the method. So, to improve readability, the section was    |
+|             moved into its own public method within the class:         |
+|             tryAddPluginToMap().                                       |
+|------------------------------------------------------------------------|
+| Question 3: What type of code smell is present in the                  |
+|             jenkins.model.Nodes class's updateAndTrim() method? How    |
+|             can it be resolved?                                        |
+|                                                                        |
+|     Answer: The updateAndTrim() method has "feature envy" for the      |
+|             jenkins.model.Jenkins class. This smell can be "snuffed    |
+|             out" by making the method a public member of the Jenkins   |
+|             class and changing its references across the Nodes class   |
+|             accordingly.                                               |
+|------------------------------------------------------------------------|
+| Question 4: What type of code smell is present in lines 249-254 of the |
+|             jenkins.model.IdStrategy class? How can it be resolved?    |
+|                                                                        |
+|     Answer: This code smell is clearly duplicated code. It can be      |
+|             easily resolved with a for-loop that iterates through the  |
+|             code the same number of times, significantly improving the |
+|             readability of the code.                                   |
+|------------------------------------------------------------------------|
+| Question 6: Identify at least one case of duplicate code found with    |
+|             PMD's Copy/Paste Detector. Explain how this smell could be |
+|             eliminated.                                                |
+|                                                                        |
+|       Note: Students were told in class (10/29) to not refactor code   |
+|             for Question 6 - only to report examples of duplicate code |
+|             and how they could be resolved.                            |
+|                                                                        |
+|     Answer: A clear example of duplicate code is present in the        |
+|             test classes JenkinsRule and HudsonTestCase, where more    |
+|             than 14 public methods are shared between them. The way    |
+|             that I would refactor this code would be to create a new   |
+|             public class (e.g.: HudsonHTML) that would be referenced   |
+|             and/or extended by the two test classes, effectively       |
+|             eliminating the amount of duplicated code.                 |
+\------------------------------------------------------------------------/
